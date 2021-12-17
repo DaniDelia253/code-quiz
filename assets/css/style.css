@@ -1,0 +1,12 @@
+.purple-text {
+    color: rgb(115, 0, 168)
+}
+
+#highScoreBtn {
+    margin: 10px;
+}
+
+#highScoreBtn:hover {
+    background:rgba(115, 0, 168, 0.767);
+    color: white;
+}
