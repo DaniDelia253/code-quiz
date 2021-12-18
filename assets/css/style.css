@@ -1,13 +1,15 @@
 .purple-text {
-    color: rgb(115, 0, 168)
+    color: rgb(115, 0, 168);
+    font-size: 20px;
 }
 
 .btn-outline-purple {
     border: 2px solid rgb(115, 0, 168);
 }
 
-.btn {
+.btn, .timer {
     margin: 10px;
+    padding: 6px 12px;
 }
 
 .btn:hover {
