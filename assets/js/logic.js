@@ -15,11 +15,15 @@
 
 var mainBodySectionEl = document.querySelector("#mainBody");
 
-var question1 = ["question #1 text...", "question #1 answer choice 1", "question #1 answer choice 2", "question #1 answer choice 3", "question #1 answer choice 4"];
+var question1 = ["question #1 text...", "question #1 answer choice 1", "question #1 answer choice 2 *CORRECT", "question #1 answer choice 3", "question #1 answer choice 4"];
 var question2 = ["question #2 text...", "question #2 answer choice 1", "question #2 answer choice 2", "question #2 answer choice 3", "question #2 answer choice 4"];
 var question3 = ["question #3 text...", "question #3 answer choice 1", "question #3 answer choice 2", "question #3 answer choice 3", "question #3 answer choice 4"];
 var question4 = ["question #4 text...", "question #4 answer choice 1", "question #4 answer choice 2", "question #4 answer choice 3", "question #4 answer choice 4"];
 var question5 = ["question #5 text...", "question #5 answer choice 1", "question #5 answer choice 2", "question #5 answer choice 3", "question #5 answer choice 4"];
+var questionArray = [question1, question2, question3, question4, question5];
+
+let i = 0;
+var chosenAnswer = "";
 
 var countdownTimer = function() {
     var timeLeft = 75;
@@ -55,7 +59,13 @@ var displayStartScreen = function() {
 
     mainBodySectionEl.appendChild(startButtonDivEl);
     startButtonDivEl.appendChild(startButtonEl);
-}
+
+    $("button#startBtn").click(function() {
+        countdownTimer();
+        quizScreen(questionArray[i]);
+        i++;
+    });
+};
 
 
 var displayHighScoreScreen = function () {
@@ -89,9 +99,8 @@ var displayHighScoreScreen = function () {
     highScoreButtonContainer.appendChild(clearHighScoresBtn);
 
     $("button#goBackBtn").click(function() {
-    
-    displayStartScreen();
-});
+        location.reload();
+    });
 };
 
 var quizScreen = function(arr) {
@@ -105,17 +114,19 @@ var quizScreen = function(arr) {
     var answerChoice1 = document.createElement("li");
     answerChoice1.textContent = arr[1];
     answerChoice1.classList = "btn answerChoiceBtn"
+    answerChoice1.id = "answerChoice1btn";
     var answerChoice2 = document.createElement("li");
     answerChoice2.textContent = arr[2];
     answerChoice2.classList = "btn answerChoiceBtn"
+    answerChoice2.id = "answerChoice2btn";
     var answerChoice3 = document.createElement("li");
     answerChoice3.textContent = arr[3];
     answerChoice3.classList = "btn answerChoiceBtn"
+    answerChoice3.id = "answerChoice3btn";
     var answerChoice4 = document.createElement("li");
     answerChoice4.textContent = arr[4];
     answerChoice4.classList = "btn answerChoiceBtn"
-
-    
+    answerChoice4.id = "answerChoice4btn";
 
     mainBodySectionEl.appendChild(quizQuestionEl);
     mainBodySectionEl.appendChild(answerChoices);
@@ -123,7 +134,21 @@ var quizScreen = function(arr) {
     answerChoices.appendChild(answerChoice2);
     answerChoices.appendChild(answerChoice3);
     answerChoices.appendChild(answerChoice4);
-}
+
+    $(answerChoices).on('click', ".answerChoiceBtn", function () {
+        var chosenAnswer = this.id;
+        console.log(chosenAnswer);
+        if (i<questionArray.length) {
+            quizScreen(questionArray[i]);
+            i++;
+        } 
+        else {
+            displayHighScoreScreen();
+        }
+
+    })
+};
+
 
 var clearPage = function() {
     mainBodySectionEl.innerHTML = "";
@@ -134,9 +159,4 @@ displayStartScreen();
 
 $("button#highScoreBtn").click(function() {
     displayHighScoreScreen();
-});
-
-
-$("button#startBtn").click(function() {
-    quizScreen(question1);
 });
