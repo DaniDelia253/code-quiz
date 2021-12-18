@@ -9,9 +9,13 @@
 
 //if answer is incorrect, display wrong and subtract time from the clock, and show next question
 
-//when all questions are answered, or the timer reaches 0, the quiz is over
+//✅when all questions are answered, or the timer reaches 0, the quiz is over
 
-//(2 todos) ✅  when the game is over, display highscore screen
+//  when the game is over, display a forn to enter inititals
+
+// high score page loads scores from local storage
+
+//when clear button is clicked, clear local storage
 
 var mainBodySectionEl = document.querySelector("#mainBody");
 
