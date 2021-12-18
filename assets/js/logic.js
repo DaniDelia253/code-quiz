@@ -1,13 +1,13 @@
 
 //✅at the top of the screen, show a highscore button and a timer
 
-//on page load, show a title, instructions, and a start button
+//✅on page load, show a title, instructions, and a start button
 
-//when the start button is clicked, start timer and show first question
+//✅when the start button is clicked, start timer and show first question
 
 //if answer is correct, display correct for a couple seconds, and go to next question
 
-//if answer is incorrect, display wrong adn subtract time from the clock, and show next question
+//if answer is incorrect, display wrong and subtract time from the clock, and show next question
 
 //when all questions are answered, or the timer reaches 0, the quiz is over
 
@@ -21,18 +21,27 @@ var question3 = ["question #3 text...", "question #3 answer choice 1", "question
 var question4 = ["question #4 text...", "question #4 answer choice 1", "question #4 answer choice 2", "question #4 answer choice 3", "question #4 answer choice 4"];
 var question5 = ["question #5 text...", "question #5 answer choice 1", "question #5 answer choice 2", "question #5 answer choice 3", "question #5 answer choice 4"];
 var questionArray = [question1, question2, question3, question4, question5];
-
+var timeLeft = 6; 
+let timeDisplay = document.querySelector(".timer")
+timeDisplay.textContent = "Timer: " + timeLeft;
 let i = 0;
 var chosenAnswer = "";
 
-var countdownTimer = function() {
-    var timeLeft = 75;
-    
-    setInterval(function () {
-        document.querySelector(".timer").textContent = "Timer: " + timeLeft;
-        timeLeft--;
-    }, 1000);
+function startCountdown () {
+    quizTimer = setInterval(countdown,1000);
 };
+
+function countdown () {
+    if (timeLeft === 0) {
+        clearInterval(quizTimer);
+        displayHighScoreScreen();
+    }
+    else {
+        timeLeft--;
+        timeDisplay.textContent = "Timer: " + timeLeft;
+    }
+};
+
 
 var displayStartScreen = function() {
 
@@ -61,7 +70,7 @@ var displayStartScreen = function() {
     startButtonDivEl.appendChild(startButtonEl);
 
     $("button#startBtn").click(function() {
-        countdownTimer();
+        startCountdown();
         quizScreen(questionArray[i]);
         i++;
     });
@@ -143,6 +152,8 @@ var quizScreen = function(arr) {
             i++;
         } 
         else {
+            clearInterval(quizTimer);
+            console.log(timeLeft);
             displayHighScoreScreen();
         }
 
