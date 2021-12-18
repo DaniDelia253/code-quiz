@@ -15,7 +15,11 @@
 
 var mainBodySectionEl = document.querySelector("#mainBody");
 
-var question1 = ["question #1 text blahball lsiadfhu lashf ;asoihdf ;sidhf ;alshjf ;aihjf ;iouf;nvkls aslkfh wrklsd fsa fja f;ajshf aekjrhf laws hfcsf;lkjhs.", "question #1 answer choice 1", "question #1 answer choice 2", "question #1 answer choice 3", "question #1 answer choice 4"];
+var question1 = ["question #1 text...", "question #1 answer choice 1", "question #1 answer choice 2", "question #1 answer choice 3", "question #1 answer choice 4"];
+var question2 = ["question #2 text...", "question #2 answer choice 1", "question #2 answer choice 2", "question #2 answer choice 3", "question #2 answer choice 4"];
+var question3 = ["question #3 text...", "question #3 answer choice 1", "question #3 answer choice 2", "question #3 answer choice 3", "question #3 answer choice 4"];
+var question4 = ["question #4 text...", "question #4 answer choice 1", "question #4 answer choice 2", "question #4 answer choice 3", "question #4 answer choice 4"];
+var question5 = ["question #5 text...", "question #5 answer choice 1", "question #5 answer choice 2", "question #5 answer choice 3", "question #5 answer choice 4"];
 
 var countdownTimer = function() {
     var timeLeft = 75;
@@ -90,21 +94,26 @@ var displayHighScoreScreen = function () {
 });
 };
 
-var quizScreen = function() {
+var quizScreen = function(arr) {
     clearPage();
 
     var quizQuestionEl = document.createElement("h5");
-    quizQuestionEl.textContent = question1[0];
+    quizQuestionEl.textContent = arr[0];
     quizQuestionEl.classList = "w-100"
     var answerChoices = document.createElement("ul");
+    answerChoices.classList = "d-inline-flex flex-column"
     var answerChoice1 = document.createElement("li");
-    answerChoice1.textContent = question1[1];
+    answerChoice1.textContent = arr[1];
+    answerChoice1.classList = "btn answerChoiceBtn"
     var answerChoice2 = document.createElement("li");
-    answerChoice2.textContent = question1[2];
+    answerChoice2.textContent = arr[2];
+    answerChoice2.classList = "btn answerChoiceBtn"
     var answerChoice3 = document.createElement("li");
-    answerChoice3.textContent = question1[3];
+    answerChoice3.textContent = arr[3];
+    answerChoice3.classList = "btn answerChoiceBtn"
     var answerChoice4 = document.createElement("li");
-    answerChoice4.textContent = question1[4];
+    answerChoice4.textContent = arr[4];
+    answerChoice4.classList = "btn answerChoiceBtn"
 
     
 
@@ -129,5 +138,5 @@ $("button#highScoreBtn").click(function() {
 
 
 $("button#startBtn").click(function() {
-    quizScreen();
+    quizScreen(question1);
 });
