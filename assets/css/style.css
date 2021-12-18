@@ -2,11 +2,15 @@
     color: rgb(115, 0, 168)
 }
 
-#highScoreBtn {
+.btn-outline-purple {
+    border: 2px solid rgb(115, 0, 168);
+}
+
+.btn {
     margin: 10px;
 }
 
-#highScoreBtn:hover {
+.btn:hover {
     background:rgba(115, 0, 168, 0.767);
     color: white;
 }
