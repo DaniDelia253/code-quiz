@@ -5,13 +5,15 @@
 
 //✅when the start button is clicked, start timer and show first question
 
-//if answer is correct, display correct for a couple seconds, and go to next question
+//✅if answer is correct, display correct for a couple seconds, and go to next question
 
-//if answer is incorrect, display wrong and subtract time from the clock, and show next question
+//✅if answer is incorrect, display wrong and subtract time from the clock, and show next question
 
 //✅when all questions are answered, or the timer reaches 0, the quiz is over
 
 // ✅ when the game is over, display a form to enter inititals
+
+//when game is over and user enters initials, save initials and high score to local storage
 
 // high score page loads scores from local storage
 
@@ -191,15 +193,11 @@ var displayHighScoreScreen = function () {
 
     clearPage();
 
-    //add form to fill with initials and whatever else
-
     var highScoreHeaderEl = document.createElement("h2");
     highScoreHeaderEl.textContent = "Highscores";
     highScoreHeaderEl.classList = "row justify-content-center"
 
     mainBodySectionEl.appendChild(highScoreHeaderEl);
-
-    //put score display here
 
     var highScoreButtonContainer = document.createElement("div");
     highScoreButtonContainer.classList = "text-center"
