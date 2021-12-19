@@ -351,6 +351,7 @@ var saveScoreInformation = function() {
     console.log(scoreObj);
     scoresArr.push(scoreObj);
     console.log(scoresArr);
+    localStorage.setItem("scores", JSON.stringify(scoresArr));
     //displayHighScoreScreen();
 }
 
