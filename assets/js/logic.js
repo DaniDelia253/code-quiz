@@ -11,7 +11,7 @@
 
 //✅when all questions are answered, or the timer reaches 0, the quiz is over
 
-//  when the game is over, display a forn to enter inititals
+//  when the game is over, display a form to enter inititals
 
 // high score page loads scores from local storage
 
@@ -25,7 +25,7 @@ var question3 = ["question #3 text...", "question #3 answer choice 1", "question
 var question4 = ["question #4 text...", "question #4 answer choice 1", "question #4 answer choice 2", "question #4 answer choice 3", "question #4 answer choice 4"];
 var question5 = ["question #5 text...", "question #5 answer choice 1", "question #5 answer choice 2", "question #5 answer choice 3", "question #5 answer choice 4"];
 var questionArray = [question1, question2, question3, question4, question5];
-var timeLeft = 6; 
+var timeLeft = 75; 
 let timeDisplay = document.querySelector(".timer")
 timeDisplay.textContent = "Timer: " + timeLeft;
 let i = 0;
@@ -158,11 +158,39 @@ var quizScreen = function(arr) {
         else {
             clearInterval(quizTimer);
             console.log(timeLeft);
-            displayHighScoreScreen();
+            displayHighScoreFormPage();
         }
 
     })
 };
+
+var displayHighScoreFormPage = function() {
+    clearPage();
+
+    var highScoreFormHeaderEl = document.createElement("h2");
+    highScoreFormHeaderEl.textContent = "All done!";
+    var highScoreFormInformationEl = document.createElement("p");
+    highScoreFormInformationEl.textContent = "Your final score is " + timeLeft + "!";
+    var highScoreFormContainerEl = document.createElement("div");
+    var highScoreFormLabelEl = document.createElement("label");
+    highScoreFormLabelEl.textContent = "Enter your initials:";
+    highScoreFormLabelEl.htmlFor = "highScoreInitials";
+    var highScoreFormInputEl = document.createElement("input");
+    highScoreFormInputEl.id = "highScoreInitials";
+    highScoreFormInputEl.type = "text";
+    var highScoreFormSubmitBtnEl = document.createElement("button");
+    highScoreFormSubmitBtnEl.textContent = "Submit";
+    highScoreFormSubmitBtnEl.classList = "btn answerChoiceBtn";
+
+    mainBodySectionEl.appendChild(highScoreFormHeaderEl);
+    mainBodySectionEl.appendChild(highScoreFormInformationEl);
+    mainBodySectionEl.appendChild(highScoreFormContainerEl);
+    highScoreFormContainerEl.appendChild(highScoreFormLabelEl);
+    highScoreFormContainerEl.appendChild(highScoreFormInputEl);
+    highScoreFormContainerEl.appendChild(highScoreFormSubmitBtnEl);
+
+
+}
 
 
 var clearPage = function() {
