@@ -15,7 +15,7 @@
 
 //when game is over and user enters initials, save initials and high score to local storage
 
-// high score page loads scores from local storage
+//high score page loads scores from local storage
 
 //when clear button is clicked, clear local storage
 
@@ -131,6 +131,8 @@ var question5 = [
         isCorrect: false
     }
 ];
+
+var scoresArr = [];
 
 var questionArray = [question1, question2, question3, question4, question5];
 var timeLeft = 75;
@@ -335,10 +337,22 @@ var displayHighScoreFormPage = function () {
     highScoreFormContainerEl.appendChild(highScoreFormSubmitBtnEl);
 
     $(highScoreFormContainerEl).on('click', "#submitInitials", function () {
-        displayHighScoreScreen();
+        saveScoreInformation();
     });
 }
 
+var saveScoreInformation = function() {
+    var initials = document.querySelector("input[id='highScoreInitials']").value;
+    console.log(initials);
+    var scoreObj = {
+        inititals: initials,
+        score: timeLeft
+    }
+    console.log(scoreObj);
+    scoresArr.push(scoreObj);
+    console.log(scoresArr);
+    //displayHighScoreScreen();
+}
 
 var clearPage = function () {
     mainBodySectionEl.innerHTML = "";
