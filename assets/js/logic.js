@@ -398,3 +398,4 @@ $("button#highScoreBtn").click(function () {
         displayHighScoreScreen();
     }
 });
+
