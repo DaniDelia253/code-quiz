@@ -1,3 +1,4 @@
+
 var mainBodySectionEl = document.querySelector("#mainBody");
 
 var question1 = [
@@ -255,19 +256,19 @@ var quizScreen = function (arr) {
     answerChoices.classList = "d-inline-flex flex-column"
     var answerChoice1 = document.createElement("li");
     answerChoice1.textContent = arr[1].text;
-    answerChoice1.classList = "btn answerChoiceBtn"
+    answerChoice1.classList = "btn answerChoiceBtn btn1"
     answerChoice1.id = arr[1].isCorrect;
     var answerChoice2 = document.createElement("li");
     answerChoice2.textContent = arr[2].text;
-    answerChoice2.classList = "btn answerChoiceBtn"
+    answerChoice2.classList = "btn answerChoiceBtn btn2"
     answerChoice2.id = arr[2].isCorrect;
     var answerChoice3 = document.createElement("li");
     answerChoice3.textContent = arr[3].text;
-    answerChoice3.classList = "btn answerChoiceBtn"
+    answerChoice3.classList = "btn answerChoiceBtn btn3"
     answerChoice3.id = arr[3].isCorrect;
     var answerChoice4 = document.createElement("li");
     answerChoice4.textContent = arr[4].text;
-    answerChoice4.classList = "btn answerChoiceBtn"
+    answerChoice4.classList = "btn answerChoiceBtn btn4"
     answerChoice4.id = arr[4].isCorrect;
 
     mainBodySectionEl.appendChild(quizQuestionEl);
@@ -280,6 +281,10 @@ var quizScreen = function (arr) {
     $(answerChoices).on('click', ".answerChoiceBtn", function () {
         var chosenAnswer = this.id;
         console.log(chosenAnswer);
+        document.querySelector(".btn1").disabled = true;
+        document.querySelector(".btn2").disabled = true;
+        document.querySelector(".btn3").disabled = true;
+        document.querySelector(".btn4").disabled = true;
         if (chosenAnswer === "true") {
             //question is right
             var separationLineEl = document.createElement("hr");
@@ -328,7 +333,7 @@ var quizScreen = function (arr) {
                     console.log(timeLeft);
                     displayHighScoreFormPage();
                 }
-            }, 1500);
+            }, 800);
         }
     })
 }
