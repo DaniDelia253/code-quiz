@@ -2,111 +2,106 @@ var mainBodySectionEl = document.querySelector("#mainBody");
 
 var question1 = [
     {
-        "text": "question #1 text...",
+        "text": "Commonly used data types DO NOT include...",
+    },
+    {
+        "text": "a.  strings",
         isCorrect: false
     },
     {
-        "text": "question #1 answer choice 1",
-        isCorrect: false
-    },
-    {
-        "text": "question #1 answer choice 2 *CORRECT",
+        "text": "b.  alerts",
         isCorrect: true
     },
     {
-        "text": "question #1 answer choice 3",
+        "text": "c.  booleans",
         isCorrect: false
     },
     {
-        "text": "question #1 answer choice 4",
+        "text": "d.  numbers",
         isCorrect: false
     }
 ];
 var question2 = [
     {
-        "text": "question #2 text...",
+        "text": "The condition in an if/else statement is enclosed with _______.",
+    },
+    {
+        "text": "a.  quotes",
         isCorrect: false
     },
     {
-        "text": "question #2 answer choice 1",
+        "text": "b.  curly brackets",
         isCorrect: false
     },
     {
-        "text": "question #2 answer choice 2",
+        "text": "c.  square brackets",
         isCorrect: false
     },
     {
-        "text": "question #2 answer choice 3",
-        isCorrect: false
-    },
-    {
-        "text": "question #2 answer choice 4 *CORRECT",
+        "text": "d.  parentheses",
         isCorrect: true
     }
 ];
 var question3 = [
     {
-        "text": "question #3 text...",
+        "text": "Arrays in JavaScript can be used to store...",
+    },
+    {
+        "text": "a.  numbers and strings",
         isCorrect: false
     },
     {
-        "text": "question #3 answer choice 1",
+        "text": "b.  other arrays",
         isCorrect: false
     },
     {
-        "text": "question #3 answer choice 2",
+        "text": "c.  booleans",
         isCorrect: false
     },
     {
-        "text": "question #3 answer choice 3 *CORRECT",
+        "text": "d.  all of the above",
         isCorrect: true
-    },
-    {
-        "text": "question #3 answer choice 4",
-        isCorrect: false
     }
 ];
 var question4 = [
     {
-        "text": "question #4 text...",
+        "text": "String values must be enclosed within ______ when being assigned to variables.",
+    },
+    {
+        "text": "a.  commas",
         isCorrect: false
     },
     {
-        "text": "question #4 answer choice 1",
-        isCorrect: false
-    },
-    {
-        "text": "question #4 answer choice 2 *CORRECT",
+        "text": "b.  quotes",
         isCorrect: true
     },
     {
-        "text": "question #4 answer choice 3",
+        "text": "c.  curly brackets",
         isCorrect: false
     },
     {
-        "text": "question #4 answer choice 4",
+        "text": "d.  parentheses",
         isCorrect: false
     }
 ];
 var question5 = [
     {
-        "text": "question #5 text...",
-        isCorrect: false
+        "text": "A very useful tool used during development and debugging for printing content to the debugger is...",
     },
     {
-        "text": "question #5 answer choice 1 *CORRECT",
+        "text": "a.  console.log",
         isCorrect: true
     },
     {
-        "text": "question #5 answer choice 2",
+        "text": "b.  terminal/bash",
         isCorrect: false
     },
     {
-        "text": "question #5 answer choice 3",
+        "text": "c.  JavaScript",
         isCorrect: false
     },
     {
-        "text": "question #5 answer choice 4",
+        "text": "d.  for loops",
         isCorrect: false
     }
 ];
@@ -255,7 +250,7 @@ var quizScreen = function (arr) {
 
     var quizQuestionEl = document.createElement("h5");
     quizQuestionEl.textContent = arr[0].text;
-    quizQuestionEl.classList = "w-100"
+    quizQuestionEl.classList = ""
     var answerChoices = document.createElement("ul");
     answerChoices.classList = "d-inline-flex flex-column"
     var answerChoice1 = document.createElement("li");
