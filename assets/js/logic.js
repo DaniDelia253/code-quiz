@@ -138,7 +138,7 @@ function startCountdown() {
 function countdown() {
     if (timeLeft === 0) {
         clearInterval(quizTimer);
-        displayHighScoreScreen();
+        displayHighScoreFormPage();
     }
     else {
         timeLeft--;
