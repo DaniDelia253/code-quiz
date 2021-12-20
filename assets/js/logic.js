@@ -13,7 +13,7 @@
 
 // ✅ when the game is over, display a form to enter inititals
 
-//when game is over and user enters initials, save initials and high score to local storage
+//✅when game is over and user enters initials, save initials and high score to local storage
 
 //high score page loads scores from local storage
 
@@ -132,7 +132,16 @@ var question5 = [
     }
 ];
 
+
 var scoresArr = [];
+
+var loadScores = function() {
+    scoresArr = localStorage.getItem("scores");
+    console.log(scoresArr);
+
+    scoresArr = JSON.parse(scoresArr);
+    console.log(scoresArr);
+};
 
 var questionArray = [question1, question2, question3, question4, question5];
 var timeLeft = 75;
@@ -200,6 +209,7 @@ var displayHighScoreScreen = function () {
     highScoreHeaderEl.classList = "row justify-content-center"
 
     mainBodySectionEl.appendChild(highScoreHeaderEl);
+
 
     var highScoreButtonContainer = document.createElement("div");
     highScoreButtonContainer.classList = "text-center"
@@ -317,15 +327,17 @@ var displayHighScoreFormPage = function () {
     highScoreFormHeaderEl.textContent = "All done!";
     var highScoreFormInformationEl = document.createElement("p");
     highScoreFormInformationEl.textContent = "Your final score is " + timeLeft + "!";
-    var highScoreFormContainerEl = document.createElement("div");
+    var highScoreFormContainerEl = document.createElement("form");
     var highScoreFormLabelEl = document.createElement("label");
     highScoreFormLabelEl.textContent = "Enter your initials:";
     highScoreFormLabelEl.htmlFor = "highScoreInitials";
     var highScoreFormInputEl = document.createElement("input");
     highScoreFormInputEl.id = "highScoreInitials";
     highScoreFormInputEl.type = "text";
-    var highScoreFormSubmitBtnEl = document.createElement("button");
-    highScoreFormSubmitBtnEl.textContent = "Submit";
+    highScoreFormInputEl.name = "highScoreInitials";
+    var highScoreFormSubmitBtnEl = document.createElement("input");
+    highScoreFormSubmitBtnEl.type = "button";
+    highScoreFormSubmitBtnEl.value = "Submit";
     highScoreFormSubmitBtnEl.classList = "btn answerChoiceBtn";
     highScoreFormSubmitBtnEl.id = "submitInitials";
 
@@ -336,30 +348,26 @@ var displayHighScoreFormPage = function () {
     highScoreFormContainerEl.appendChild(highScoreFormInputEl);
     highScoreFormContainerEl.appendChild(highScoreFormSubmitBtnEl);
 
-    $(highScoreFormContainerEl).on('click', "#submitInitials", function () {
-        saveScoreInformation();
+    $(highScoreFormSubmitBtnEl).on('click', function () {
+        var initials = document.querySelector("input[id='highScoreInitials']").value;
+        console.log(initials);
+        var scoreObj = {
+            inititals: initials,
+            score: timeLeft
+        }
+        console.log(scoreObj);
+        scoresArr.push(scoreObj);
+        console.log(scoresArr);
+        localStorage.setItem("scores", JSON.stringify(scoresArr));
+        displayHighScoreScreen();
     });
-}
-
-var saveScoreInformation = function() {
-    var initials = document.querySelector("input[id='highScoreInitials']").value;
-    console.log(initials);
-    var scoreObj = {
-        inititals: initials,
-        score: timeLeft
-    }
-    console.log(scoreObj);
-    scoresArr.push(scoreObj);
-    console.log(scoresArr);
-    localStorage.setItem("scores", JSON.stringify(scoresArr));
-    //displayHighScoreScreen();
 }
 
 var clearPage = function () {
     mainBodySectionEl.innerHTML = "";
 };
 
-
+loadScores();
 displayStartScreen();
 
 $("button#highScoreBtn").click(function () {
