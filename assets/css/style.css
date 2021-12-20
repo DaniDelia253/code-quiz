@@ -45,3 +45,9 @@
     font-weight: bold;
     font-style: italic;
 }
+
+.table {
+    border-color:rgba(115, 0, 168, 0.767);
+    background:rgba(115, 0, 168, 0.167);
+}
+

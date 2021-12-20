@@ -1,24 +1,3 @@
-
-//✅at the top of the screen, show a highscore button and a timer
-
-//✅on page load, show a title, instructions, and a start button
-
-//✅when the start button is clicked, start timer and show first question
-
-//✅if answer is correct, display correct for a couple seconds, and go to next question
-
-//✅if answer is incorrect, display wrong and subtract time from the clock, and show next question
-
-//✅when all questions are answered, or the timer reaches 0, the quiz is over
-
-// ✅ when the game is over, display a form to enter inititals
-
-//✅when game is over and user enters initials, save initials and high score to local storage
-
-//high score page loads scores from local storage
-
-//when clear button is clicked, clear local storage
-
 var mainBodySectionEl = document.querySelector("#mainBody");
 
 var question1 = [
@@ -139,8 +118,14 @@ var loadScores = function() {
     scoresArr = localStorage.getItem("scores");
     console.log(scoresArr);
 
-    scoresArr = JSON.parse(scoresArr);
-    console.log(scoresArr);
+    if (scoresArr === null) {
+        scoresArr = [];
+        return false
+    }
+    else if (scoresArr) {
+        scoresArr = JSON.parse(scoresArr);
+        console.log(scoresArr);
+    }
 };
 
 var questionArray = [question1, question2, question3, question4, question5];
@@ -210,6 +195,33 @@ var displayHighScoreScreen = function () {
 
     mainBodySectionEl.appendChild(highScoreHeaderEl);
 
+    var highScoresTableEl = document.createElement("table");
+    highScoresTableEl.classList = "table table-hover w-50 m-auto border text-center" 
+    mainBodySectionEl.appendChild(highScoresTableEl);
+    var highScoreTableHeaderEl = document.createElement("thead");
+    highScoresTableEl.appendChild(highScoreTableHeaderEl);
+    var highScoreTableHeaderRowEl = document.createElement("tr");
+    highScoreTableHeaderEl.appendChild(highScoreTableHeaderRowEl);
+    var highScoreTableHeaderRowInitialsTextEL = document.createElement("th");
+    highScoreTableHeaderRowInitialsTextEL.textContent = "Initials";
+    highScoreTableHeaderRowEl.appendChild(highScoreTableHeaderRowInitialsTextEL);
+    var highScoreTableHeaderRowScoreTextEL = document.createElement("th");
+    highScoreTableHeaderRowScoreTextEL.textContent = "Score";
+    highScoreTableHeaderRowEl.appendChild(highScoreTableHeaderRowScoreTextEL);
+    var highScoreTableBodyEl = document.createElement("tbody");
+    highScoresTableEl.appendChild(highScoreTableBodyEl);
+    
+    for (var i = 0; i<scoresArr.length; i++) {
+        var scoreRow = document.createElement("tr");
+        highScoreTableBodyEl.appendChild(scoreRow);
+        var scoreRowInitials = document.createElement("td");
+        scoreRowInitials.textContent = scoresArr[i].initials;
+        scoreRow.appendChild(scoreRowInitials);
+        var scoreRowScore = document.createElement("td");
+        scoreRowScore.textContent = scoresArr[i].score;
+        scoreRow.appendChild(scoreRowScore);
+    }
+
 
     var highScoreButtonContainer = document.createElement("div");
     highScoreButtonContainer.classList = "text-center"
@@ -221,6 +233,7 @@ var displayHighScoreScreen = function () {
 
     var clearHighScoresBtn = document.createElement("button");
     clearHighScoresBtn.textContent = "Clear Highscores";
+    clearHighScoresBtn.id = "clearBtn";
     clearHighScoresBtn.classList = "btn btn-sm purple-text btn-outline-purple";
 
     mainBodySectionEl.appendChild(highScoreButtonContainer);
@@ -229,6 +242,11 @@ var displayHighScoreScreen = function () {
 
     $("button#goBackBtn").click(function () {
         location.reload();
+    });
+
+    $("button#clearBtn").click(function () {
+        localStorage.clear();
+        highScoreTableBodyEl.remove(scoreRow);
     });
 };
 
@@ -352,7 +370,7 @@ var displayHighScoreFormPage = function () {
         var initials = document.querySelector("input[id='highScoreInitials']").value;
         console.log(initials);
         var scoreObj = {
-            inititals: initials,
+            initials: initials,
             score: timeLeft
         }
         console.log(scoreObj);
